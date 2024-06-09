@@ -107,12 +107,3 @@ function getAllOrders(req, res, next) {
     });
 }
 exports.getAllOrders = getAllOrders;
-function sleep(ms) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                return resolve(true);
-            }, ms);
-        });
-    });
-}

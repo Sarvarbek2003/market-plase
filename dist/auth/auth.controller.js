@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const auth_service_1 = require("./auth.service");
 let router = express_1.default.Router();
 router
-    .post('/login', auth_service_1.login);
+    .post('/login', auth_service_1.login)
+    .post('/singup', auth_service_1.singup);
 exports.default = router;

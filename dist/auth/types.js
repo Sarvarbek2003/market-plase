@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SignUp = void 0;
+exports.SignUp = exports.Login = void 0;
+class Login {
+}
+exports.Login = Login;
 class SignUp {
 }
 exports.SignUp = SignUp;

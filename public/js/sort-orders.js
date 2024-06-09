@@ -33,6 +33,7 @@ document.querySelectorAll('.btn-list .btn').forEach(btn => {
     btn.onclick = async () => {
         document.querySelectorAll('.btn-list .btn').forEach(e => e.style = 'border: 0px solid black;')
         btn.style = 'border: 2px solid black;'
+        placeholderRunner()
         let respone = await request('/market/products?type='+ btn.id)
         renderDataForTable(respone)
     }
@@ -99,3 +100,41 @@ function renderTextContent (item, key) {
     }
 }
 
+function placeholderRunner() {
+    tBody.innerHTML = 
+    `<tr>
+        <th scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></th>
+        <td scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        </tr>
+        <tr>
+        <th scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></th>
+        <td scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        </tr>
+        <tr>
+        <th scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></th>
+        <td scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        </tr>
+        <tr>
+        <th scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></th>
+        <td scope="row" class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></span></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+        <td class="placeholder-glow"><span class="placeholder col-6 bg-secondary"></td>
+    </tr>`
+    trDinmaic.innerHTML = `
+        <th class="placeholder-glow" scope="col"><span class="placeholder col-6 bg-secondary"></span></th>
+        <th class="placeholder-glow" scope="col"><span class="placeholder col-6 bg-secondary"></span></th>
+        <th class="placeholder-glow" scope="col"><span class="placeholder col-6 bg-secondary"></span></th>
+        <th class="placeholder-glow" scope="col"><span class="placeholder col-6 bg-secondary"></span></th>
+        <th class="placeholder-glow" scope="col"><span class="placeholder col-6 bg-secondary">
+    `
+}

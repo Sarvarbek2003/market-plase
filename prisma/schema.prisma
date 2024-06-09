@@ -9,10 +9,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id Int @id @default(autoincrement())
+  name String @unique 
+  login String @unique
+  password String @unique
+  role Role 
+  uuid String @unique @default(uuid())
+}
 
 model Categories {
   id Int @id @default(autoincrement())
@@ -62,8 +70,12 @@ model Order {
   created_at DateTime @default(now())
 }
 
-
 enum Currnecy {
   USD
   UZS
+}
+
+enum Role {
+  ADMIN
+  USER
 }

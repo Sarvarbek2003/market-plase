@@ -1,7 +1,7 @@
 const backendApi = 'http://localhost:3333'      
 async function request (route, method, body) {
 	let headers = {
-		
+		'Authorization': `Bearer ${window.localStorage.getItem('token')}`,
 	}
 	
 	if( !(body instanceof FormData) ) {
@@ -14,8 +14,11 @@ async function request (route, method, body) {
 		body: (body instanceof FormData) ? body : JSON.stringify(body)
 	})
 
+	if(response.status == 401) window.location = '/login'
+
 	if(!(response.status === 200 || response.status === 201)) {
 		response = await response.json()
+		if(window.location.pathname == '/login') return error_alert.textContent = response.message
 		appendAlert(response.message, 'danger')
         return false
 	}
