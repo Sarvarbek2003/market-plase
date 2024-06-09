@@ -67,7 +67,7 @@ function getAllOrders(req, res, next) {
         try {
             let query = req.query;
             let where = yield (0, market_adapters_1.filterOrderWhereInputAdapter)(query);
-            yield sleep(2000);
+            // await sleep(2000)
             if (query.type == 'non_sell') {
                 let products = yield (0, composables_1.paginate)('products', prisma_service_1.prisma, {
                     page: Number(query.page || '1'),
