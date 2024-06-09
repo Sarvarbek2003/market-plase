@@ -18,7 +18,10 @@ async function request (route, method, body) {
 
 	if(!(response.status === 200 || response.status === 201)) {
 		response = await response.json()
-		if(window.location.pathname == '/login') return error_alert.textContent = response.message
+		if(window.location.pathname == '/login'){ 
+			error_alert.textContent = response.message
+			return false
+		}
 		appendAlert(response.message, 'danger')
         return false
 	}

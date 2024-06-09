@@ -8,8 +8,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             login: username,
             password: password
         })
-        
-        window.localStorage.setItem('token', response.token)
-        window.location = '/'
+        if(response) {
+            window.localStorage.setItem('token', response.token)
+            window.location = '/'
+        }
     } 
 });
