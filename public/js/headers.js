@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         
     // `;
 
-    let [nav, div, a, button, span, div2, ul, li1, a1, li2, a2, li3, a3] = createElements('nav', 'div', 'a', 'button', 'span', 'div','ul','li', 'a', 'li', 'a', 'li', 'a')
+    let [
+        nav, div, a, button, span, div2, ul, li1, a1, li2, a2, li3, a3, li4, a4
+    ] = createElements('nav', 'div', 'a', 'button', 'span', 'div','ul','li', 'a', 'li', 'a', 'li', 'a', 'li', 'a')
     nav.className = "navbar navbar-expand-lg bg-body-tertiary"
     div.className = "container-fluid"
     a.className = "navbar-brand"
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     li1.className = 'nav-item'
     li2.className = 'nav-item'
     li3.className = 'nav-item'
+    li4.className = 'nav-item'
     a1.className = window.location.pathname == '/create' ? 'nav-link active' : 'nav-link'
     a1.href = '/create'
     a1.textContent = 'Shablon yaratish'
@@ -54,10 +57,14 @@ document.addEventListener("DOMContentLoaded", function() {
     a3.className =  window.location.pathname == '/add-product' ? 'nav-link active' : 'nav-link'
     a3.textContent = 'Mahsulot qo\'shish'
     a3.href = '/add-product'
+    a4.className =  window.location.pathname == '/products' ? 'nav-link active' : 'nav-link'
+    a4.textContent = 'Maxsulotlar'
+    a4.href = '/products'
     li1.append(a1)
     li2.append(a2)
     li3.append(a3)
-    ul.append(li1, li2, li3)
+    li4.append(a4)
+    ul.append(li1, li2, li3, li4)
     div2.append(ul)
     button.append(span)
     div.append(a, button, div2)

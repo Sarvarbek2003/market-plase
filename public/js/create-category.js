@@ -72,7 +72,7 @@ async function update(params, button_start, button_stop) {
         is_active: is_active 
     })
     if(response) {
-        alert(is_active ? 'Xizmat yondi' : 'Xizmat o\'chdi')
+        appendAlert(is_active ? 'Xizmat yondi' : 'Xizmat o\'chdi', is_active ? 'success' : 'warning')
         if(is_active === true) {
             button_start.disabled = true
             button_stop.disabled = false

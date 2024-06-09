@@ -124,8 +124,10 @@ async function renderProductSingle() {
 
     order_price.value = item.sell_price
     input_price.value = item.sell_price
+    let vendor = window.localStorage.getItem('user')
+    order_vendor.value = vendor ? JSON.parse(vendor).name : ''
     procuct_id = item.id
-    
+
     div5.append(h6, p)
     item.parametrs.forEach( el => {
         let [ p ] = createElements('p')

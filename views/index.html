@@ -148,7 +148,7 @@
           width: 0px; 
         }
 
-</style>
+    </style>
 </head>
 <header id="header" style="min-height: 60px;"></header>
 <body>
@@ -249,7 +249,7 @@
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Comment</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body" >
@@ -324,19 +324,23 @@
                       <option value="200">200</option>
                     </select>
                 </div>
-                  <nav style="margin-top: 10px;">
-                      <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                          <a class="page-link">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">Next</a>
-                        </li>
-                      </ul>
-                  </nav>
+                <nav aria-label="Page navigation example" style="margin-top: 20px;">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" style="cursor: pointer;" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" style="cursor: pointer;">1</a></li>
+                    <li class="page-item"><a class="page-link" style="cursor: pointer;">2</a></li>
+                    <li class="page-item"><a class="page-link" style="cursor: pointer;">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" style="cursor: pointer;" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
             </div>
             
         </div>

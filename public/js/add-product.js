@@ -37,18 +37,24 @@ function renderTemplate(array) {
 
 document.getElementById('inputGroupSelect01').onchange = async() => {
     let response = await request('/product/parametrs/' + inputGroupSelect01.value, 'GET')
+    let response3 = await request('/product/' + response.result[0].id, 'GET')
     fields = response.result
     inputGroupSelect02.innerHTML = null
     cardBody.innerHTML = null
     inputGroup.innerHTML = null
+    document.querySelector('.product-list').innerHTML = null
+    response3.result.forEach( el => renderProducts(el))
     renderTemplate(response.result)
     inputRender(response.result[0])
 }
 
-document.getElementById('inputGroupSelect02').onchange = () => {
+document.getElementById('inputGroupSelect02').onchange = async () => {
     let field = fields.find(el => el.id == inputGroupSelect02.value)
     inputGroup.innerHTML = null
     cardBody.innerHTML = null
+    let response3 = await request('/product/' + inputGroupSelect02.value, 'GET')
+    document.querySelector('.product-list').innerHTML = null
+    response3.result.forEach( el => renderProducts(el))
     inputRender(field)
 }
 

@@ -23,7 +23,7 @@ async function request (route, method, body) {
 			return false
 		}
 		appendAlert(response.message, 'danger')
-        return false
+        throw new Error(response.message)
 	}
 
 	return await response.json()
@@ -65,4 +65,7 @@ const appendAlert = (message, type) => {
 		'</div>'
 	].join('')
 	alertPlaceholder.append(wrapper)
+	setTimeout(() => {
+		wrapper.innerHTML = null
+	}, 2000);
 }

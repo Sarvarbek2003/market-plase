@@ -10,8 +10,9 @@
 
     .create-category {
         padding: 50px;
-        width: 100%;
+        width: 50%;
     }
+
     .cards {
         padding: 50px;
         width: 100%;
@@ -22,6 +23,21 @@
     
     .card {
       margin: 10px;
+      width: 300px;
+    }
+
+    @media screen and (max-width: 900px){
+      .cards {
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      .create-category {
+        padding: 20px;
+        width: 100%;
+      }
     }
 
   </style>

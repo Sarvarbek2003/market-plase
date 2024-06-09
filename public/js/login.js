@@ -9,6 +9,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             password: password
         })
         if(response) {
+            let me = await request('/auth/me', "GET")
+            window.localStorage.setItem('user', JSON.stringify(me))
             window.localStorage.setItem('token', response.token)
             window.location = '/'
         }
