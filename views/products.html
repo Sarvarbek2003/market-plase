@@ -19,9 +19,9 @@
         }
         
         .continer-category__list {
-            width: 30%;
+            width: 25%;
             padding: 10px;
-            height: calc(100vh - 350px);
+            height: calc(100vh - 70px);
             background-color: #F8F9FA;
         }
 
@@ -34,8 +34,10 @@
         }
 
         .continer-product_list {
-            width: 70%;
+            overflow: auto;
+            width: 75%;
             padding: 20px;
+            height: calc(100vh - 70px);
         }
 
         .card-body {
@@ -50,15 +52,19 @@
             object-fit: cover;
         }
 
+        .col {
+          max-width: 260px;
+        }
+
     </style>
 </head>
 <header id="header" style="min-height: 60px;"></header>
 <body>
     <div id="liveAlertPlaceholder"></div>
     <div class="continer">
-        <div class="setting_continer">
+        <!-- <div class="setting_continer">
 
-        </div>
+        </div> -->
         <div class="produc-continer">
             <div class="continer-category__list">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -78,31 +84,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col" style="max-width: 260px;">
-                      <div class="card h-100">
-                        <img src="files/background.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col" style="max-width: 260px;">
-                      <div class="card h-100">
-                        <img src="files/9/203f5aed0590cadec527b5988748598c.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

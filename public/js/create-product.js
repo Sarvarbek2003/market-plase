@@ -21,6 +21,7 @@ save.onclick = () => {
             key: index.toString(),
             value: element.value
         })
+        element.value = null
     });
     created(array, inputGroupSelect01.value);
 }
@@ -48,3 +49,4 @@ async function created(array, category_id) {
 
     console.log(respone);
 }
+
