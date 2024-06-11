@@ -67,5 +67,5 @@ const appendAlert = (message, type) => {
 	alertPlaceholder.append(wrapper)
 	setTimeout(() => {
 		wrapper.innerHTML = null
-	}, 2000);
+	}, 3000);
 }

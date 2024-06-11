@@ -2,17 +2,13 @@
     let response = await request('/product/categories', 'GET')
     renderCategory(response.result)
 })()
-
-{/* <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#1" aria-expanded="false" aria-controls="1">
-                Accordion Item #1
-            </button>
-        </h2>
-        <div id="1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-        </div>
-</div> */}
+let product_id 
+send_telegram.onclick = async() => {
+    let response = await request('/market/send/' + product_id, 'GET')
+    if(response.result == 'ok') {
+        appendAlert('Xabar telegramga yuborildi', 'success')
+    }
+}
 
 async function renderCategory (items) {
     for (const item of items) {
@@ -51,11 +47,12 @@ async function renderCategory (items) {
 }
 
 async function renderProductsForCard(id) {
+    document.querySelector('.row').innerHTML = null
     let response = await request('/product/' + id, 'GET')
     for (const item of response.result) {
         let  [
-            div1, div2, img, div3, h5, p, div4, small
-        ] = createElements('div','div', 'img', 'div', 'h5', 'p', 'div','small')
+            div1, div2, img, div3, h5, p, div4, small, img2
+        ] = createElements('div','div', 'img', 'div', 'h5', 'p', 'div','small', 'img')
 
         div1.className = 'col'
         div2.className = 'card h-100'
@@ -64,37 +61,45 @@ async function renderProductsForCard(id) {
         h5.className = 'card-title'
         p.className = 'card-text'
         img.className = 'card-img-top'
+        img2.className = 'telegram-icon'
         small.className = 'text-body-secondary'
+        p.style = 'margin-bottom: 1px;font-weight: 700;'
 
         img.src = item.photo
+        img2.src = 'files/telegram-icon.svg'
         h5.textContent = item.name 
+        p.textContent = Number(item.sell_price).toLocaleString() + ` ${item.currency}\n`
         small.textContent = `ID: ${item.uniqueid}`
-        div3.append(h5)
+
+        img2.setAttribute('data-bs-toggle','modal')
+        img2.setAttribute('data-bs-target','#exampleModal')
+
+        div3.append(h5, p)
+        let txt = `<pre>Narxi: ` + Number(item.sell_price).toLocaleString() + ` ${item.currency}\n`
         item.parametrs.map(el =>  {
             let [p] = createElements('p')
-            p.className = 'text-body-secondary'
-            p.textContent = `${el.key}-${el.value}\n`
+            p.className = 'card-text'
+            p.textContent = `${el.key}-${el.value}`
+            txt += `${el.key}-${el.value}\n`
             p.style = 'margin-bottom: 1px;'
             div3.append(p)
+           
         })
 
-        div4.append(small)
+        img2.onclick = () => {
+            product_id = item.id
+            document.querySelector('.modal-body').innerHTML = txt + '</pre>'
+        }
+        small.onclick = () => {
+            navigator.clipboard.writeText(item.uniqueid)
+            appendAlert('ID dan nusxa olindi', 'success')
+        }
+
+       
+
+        div4.append(small, img2)
         div2.append(img, div3, div4)
         div1.append(div2)
         document.querySelector('.row').append(div1)
     }
 }
-
-
-{/* <div class="col" style="max-width: 260px;">
-<div class="card h-100">
-  <img src="files/login.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-  </div>
-  <div class="card-footer">
-    <small class="text-body-secondary">Last updated 3 mins ago</small>
-  </div>
-</div>
-</div> */}

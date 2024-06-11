@@ -200,7 +200,7 @@ async function renderProducts (item) {
     
     div1.className = 'card mb-3'
     div2.className = 'row g-0'
-    picture.className = 'col-md-3'
+    picture.className = 'col-md-4'
     source.srcset = item.photo
     source.type = "image/jpg"
     img.className="img-fluid"

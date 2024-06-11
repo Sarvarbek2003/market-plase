@@ -13,8 +13,12 @@
     }
 
     .input-group__continer {
-        padding: 50px;
+        padding: 25px;
+        margin: 25px;
         width: 60%;
+        height: calc(100vh - 110px);
+        overflow-y: auto;
+        background-color: #F8F9FA;
     }
 
     .template {
@@ -29,20 +33,39 @@
           width: 0px; /* Scrollbar eni */
     }
 
+    .input-group__continer::-webkit-scrollbar {
+        width: 5px; 
+        border: solid 1px rgb(237, 237, 237);
+    }
+
+    .input-group__continer::-webkit-scrollbar-thumb {
+        background: #888; /* Thumb (o'ram) rangi */
+        border-radius: 6px; /* Thumb burchaklari radiusi */
+    }
+
+
 
     @media screen and (max-width: 1000px) {
-        .input-group__continer {
-            padding: 30px;
-            width: 100%;
-        }
         .continer { 
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
+
+        .input-group__continer {
+            padding: 25px;
+            margin: 0px;
+            width: 100%;
+            height: auto;
+            overflow-y: none;
+            background-color: #F8F9FA;
+        }
+       
         .template {
             width: 100%;
             padding: 30px;
-            overflow-x: auto;
+            height:auto;    
+            overflow: hidden;
         }
 
         #input_proc {
