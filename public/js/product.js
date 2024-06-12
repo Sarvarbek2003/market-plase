@@ -91,8 +91,17 @@ async function renderProductsForCard(id) {
             document.querySelector('.modal-body').innerHTML = txt + '</pre>'
         }
         small.onclick = () => {
-            navigator.clipboard.writeText(item.uniqueid)
-            appendAlert('ID dan nusxa olindi', 'success')
+            if(navigator.clipboard) {
+                navigator.clipboard.writeText(item.uniqueid)
+                appendAlert('ID dan nusxa olindi', 'success')
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = item.uniqueid;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy')
+                appendAlert('ID dan nusxa olindi', 'success')
+            }
         }
 
        
