@@ -1,6 +1,7 @@
 let tBody = document.querySelector('.table-group-divider')
 let tHead = document.querySelector('.table-dark')
 let trDinmaic = document.querySelector('.dinamic-tr')
+let type = 'all'
 let tdElemtnNames = {
     name: 'Name',
     buy_sell: 'Buy price',
@@ -15,8 +16,9 @@ let tdElemtnNames = {
     last_payment_date: 'Last payment'
 }
 ;(async()=> {
-    let respone = await request('/market/products')
+    let respone = await request(`/market/products?size=${inputGroupSelect0102.value}&page=1`)
     renderDataForTable(respone)
+    paginateRender(respone)
 })()
 
 function renderDataForTable(data) {
@@ -29,13 +31,64 @@ function renderDataForTable(data) {
     }
 }
 
+function paginateRender(data) {
+    document.querySelector('.pages-items').innerHTML =null
+    prev_btn.disabled = !data.hasPreviousPage
+    next_btn.disabled = !data.hasNextPage
+    prev_btn.onclick = async() => {
+        let respone = await request('/market/products?type='+ type + `&page=${data.currentPage - 1}&size=${inputGroupSelect0102.value}`)
+        prev_btn.disabled = !respone.hasPreviousPage
+        next_btn.disabled = !respone.hasNextPage
+        renderDataForTable(respone)
+        paginateRender(respone)
+    }
+
+    let limit = data.totalPage > 3 ? 3 : data.totalPage
+    for (let i = data.currentPage; i <= limit + data.currentPage - 1; i++ ) { 
+        let [div, btn] = createElements('div', 'button')       
+        div.className = 'page-item'
+        btn.className = 'page-link'
+        btn.disabled = data.totalPage >= i ? false : true
+        btn.textContent = i
+        div.append(btn)
+        div.onclick = async () => {
+            let respone = await request('/market/products?type='+ type + `&page=${i}&size=${inputGroupSelect0102.value}`)
+            prev_btn.disabled = !respone.hasPreviousPage
+            next_btn.disabled = !respone.hasNextPage
+            renderDataForTable(respone)
+            paginateRender(respone)
+        }
+        document.querySelector('.pages-items').append(div)
+    }
+
+    next_btn.onclick = async() => {
+        let respone = await request('/market/products?type='+ type + `&page=${data.currentPage +1}&size=${inputGroupSelect0102.value}`)
+        next_btn.disabled = !respone.hasNextPage
+        prev_btn.disabled = !respone.hasPreviousPage
+        renderDataForTable(respone)
+        paginateRender(respone)
+    }
+}
+
+
+// <li class="page-item"><a class="page-link" style="cursor: pointer;">1</a></li>
+// <li class="page-item"><a class="page-link" style="cursor: pointer;">2</a></li>
+// <li class="page-item"><a class="page-link" style="cursor: pointer;">3</a></li>
+// <li class="page-item">
+// <a class="page-link" style="cursor: pointer;" aria-label="Next">
+//   <span aria-hidden="true">&raquo;</span>
+// </a>
+// </li>
+
 document.querySelectorAll('.btn-list .btn').forEach(btn => {
     btn.onclick = async () => {
         document.querySelectorAll('.btn-list .btn').forEach(e => e.style = 'border: 0px solid black;')
         btn.style = 'border: 2px solid black;'
         placeholderRunner()
-        let respone = await request('/market/products?type='+ btn.id)
+        type = btn.id
+        let respone = await request('/market/products?type='+ btn.id + `&page=${1}&size=${inputGroupSelect0102.value}`)
         renderDataForTable(respone)
+        paginateRender(respone)
     }
 })
 

@@ -45,6 +45,7 @@
         .pagination-list {
           display: flex;
           align-items: center;
+          margin: 10px;
           justify-content: space-between;
         }
 
@@ -146,6 +147,10 @@
 
         .card__content::-webkit-scrollbar {
           width: 0px; 
+        }
+
+        .pages-items {
+          display: flex;
         }
 
     </style>
@@ -317,29 +322,32 @@
             </div>
             <div class="pagination-list">
                 <div class="input-group" style="width: 100px;" >
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="inputGroupSelect0102">
+                      <option value="10">10</option>
                       <option value="25">25</option>
                       <option value="50">50</option>
                       <option value="100">100</option>
                       <option value="200">200</option>
                     </select>
                 </div>
-                <nav aria-label="Page navigation example" style="margin-top: 20px;">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" style="cursor: pointer;" aria-label="Previous">
+                <nav aria-label="Page navigation example">
+                  <div class="pagination">
+                    <div class="page-item">
+                      <button class="page-link" id="prev_btn">
                         <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" style="cursor: pointer;">1</a></li>
-                    <li class="page-item"><a class="page-link" style="cursor: pointer;">2</a></li>
-                    <li class="page-item"><a class="page-link" style="cursor: pointer;">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" style="cursor: pointer;" aria-label="Next">
+                      </button>
+                    </div>
+                    <div class="pages-items">
+                      <!-- <div class="page-item"><a class="page-link" style="cursor: pointer;">1</a></div>
+                      <div class="page-item"><a class="page-link" style="cursor: pointer;">1</a></div>
+                      <div class="page-item"><a class="page-link" style="cursor: pointer;">1</a></div> -->
+                    </div>
+                    <div class="page-item">
+                      <button class="page-link" id="next_btn">
                         <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
+                      </button>
+                    </div>
+                  </div>
                 </nav>
             </div>
             

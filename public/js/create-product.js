@@ -46,6 +46,7 @@ async function created(array, category_id) {
         "category_id": Number(category_id),
         "parametrs": array
     })
-    if(respone) appendAlert('Shablon yaratildi', 'success')
+
+    console.log(respone);
 }
 
